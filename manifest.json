@@ -1,0 +1,11 @@
+{
+  "name": "فارسی‌یار (FarsiYar) - فێربوونی فارسی بۆ کوردیی سۆرانی",
+  "short_name": "FarsiYar",
+  "description": "فێربوونی زمانی فارسیی ئێرانی (فەرمی و ئاخاوتنی) بە ڕێنووسی خوێندنەوەی کوردیی سۆرانی",
+  "lang": "ckb",
+  "dir": "rtl",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#050c1d",
+  "theme_color": "#060d1f"
+}
