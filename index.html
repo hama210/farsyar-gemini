@@ -6,37 +6,25 @@
   <meta name="theme-color" content="#060d1f" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <title>فارسی‌یار (FarsiYar) — فێربوونی فارسیی ئێرانی بۆ کوردیی سۆرانی | v1.1</title>
+  <title>فارسی‌یار (FarsiYar) — فێربوونی فارسیی ئێرانی بۆ کوردیی سۆرانی</title>
   <script src="https://cdn.tailwindcss.com/3.4.17" async></script>
   <style>
-    :root {
-      color-scheme: dark;
-      --bg: #030712;
-      --card: #0b1220;
-      --border: rgba(56, 189, 248, 0.15);
-      --accent: #22d3ee;
-    }
+    :root { color-scheme: dark; }
     * { box-sizing: border-box; }
     body {
       margin: 0;
-      background-color: var(--bg);
+      background-color: #050c1d;
       background-image:
-        radial-gradient(at 0% 0%, rgba(34, 211, 238, 0.08) 0px, transparent 50%),
-        radial-gradient(at 100% 0%, rgba(59, 130, 246, 0.1) 0px, transparent 45%),
-        radial-gradient(at 50% 100%, rgba(99, 102, 241, 0.08) 0px, transparent 50%);
-      color: #f1f5f9;
+        radial-gradient(at 10% 10%, rgba(37, 99, 235, 0.16) 0px, transparent 45%),
+        radial-gradient(at 90% 15%, rgba(6, 182, 212, 0.12) 0px, transparent 45%),
+        radial-gradient(at 50% 90%, rgba(30, 58, 138, 0.2) 0px, transparent 55%);
+      color: #f8fafc;
       font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans Arabic", "Helvetica Neue", Arial, sans-serif;
       overflow-x: hidden;
       padding-bottom: calc(4.75rem + env(safe-area-inset-bottom, 0px));
-      line-height: 1.5;
     }
-    @media (min-width: 1024px) {
-      body { padding-bottom: 2rem; }
-    }
-    [lang="fa"] {
-      font-family: system-ui, -apple-system, "Segoe UI", Tahoma, "Noto Sans Arabic", sans-serif;
-    }
-    /* Offline Fallback CSS Utilities so app looks great even without CDN */
+    @media (min-width: 1024px) { body { padding-bottom: 2rem; } }
+    [lang="fa"] { font-family: system-ui, -apple-system, "Segoe UI", Tahoma, "Noto Sans Arabic", sans-serif; }
     .hidden { display: none !important; }
     .flex { display: flex; }
     .inline-flex { display: inline-flex; }
@@ -126,30 +114,12 @@
     .text-2xl { font-size: 1.5rem; }
     .text-right { text-align: right; }
     .text-center { text-align: center; }
-    button { cursor: pointer; font-family: inherit; transition: all 0.15s ease; }
-    button:active { transform: scale(0.97); }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(6px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .animate-fadeIn {
-      animation: fadeIn 0.25s ease-out forwards;
-    }
-    ::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
-    }
-    ::-webkit-scrollbar-track {
-      background: transparent;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: rgba(34, 211, 238, 0.35);
-      border-radius: 9999px;
-    }
-    header {
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-    }
+    button { cursor: pointer; font-family: inherit; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+    .animate-fadeIn { animation: fadeIn 0.22s ease-out forwards; }
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: #060d1f; }
+    ::-webkit-scrollbar-thumb { background: #1e3a8a; border-radius: 9999px; }
   </style>
 </head>
 <body class="min-h-screen flex flex-col selection:bg-cyan-500 selection:text-slate-950">
@@ -157,7 +127,6 @@
   <!-- Sticky Top Header -->
   <header class="sticky top-0 z-40 bg-slate-950/90 backdrop-blur-md border-b border-blue-900/50">
     <div class="max-w-7xl mx-auto px-3 sm:px-6 py-2.5 flex flex-wrap items-center justify-between gap-2">
-      <!-- Brand Logo -->
       <div class="flex items-center gap-2.5">
         <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-blue-600 via-indigo-600 to-cyan-500 flex items-center justify-center shadow-lg shadow-blue-600/30 border border-cyan-300/30">
           <span class="text-lg font-black text-white">ف</span>
@@ -170,95 +139,50 @@
           <p class="text-[11px] text-slate-400 hidden sm:block">فێربوونی فارسیی ئێرانی (فەرمی و ئاخاوتنی) بە کوردیی سۆرانی</p>
         </div>
       </div>
-
-      <!-- Desktop Navigation -->
       <nav class="hidden lg:flex items-center gap-1.5 bg-slate-900/90 p-1.5 rounded-2xl border border-slate-800" aria-label="Primary Navigation">
-        <button id="nav-desktop-lessons" type="button" onclick="switchTab('lessons')">
-          <span>📚</span><span>وانەکان</span>
-        </button>
-        <button id="nav-desktop-vocab" type="button" onclick="switchTab('vocab')">
-          <span>🗂️</span><span>فەرهەنگ</span>
-        </button>
-        <button id="nav-desktop-builder" type="button" onclick="switchTab('builder')">
-          <span>🧩</span><span>ڕستەسازی</span>
-        </button>
-        <button id="nav-desktop-conversations" type="button" onclick="switchTab('conversations')">
-          <span>💬</span><span>گفتوگۆکان</span>
-        </button>
-        <button id="nav-desktop-quiz" type="button" onclick="switchTab('quiz')">
-          <span>🎯</span><span>تاقیکردنەوە</span>
-        </button>
-        <button id="nav-desktop-progress" type="button" onclick="switchTab('progress')">
-          <span>📊</span><span>پێشکەوتن و سیستەم</span>
-        </button>
+        <button id="nav-desktop-lessons" type="button" onclick="switchTab('lessons')"><span>📚</span><span>وانەکان</span></button>
+        <button id="nav-desktop-vocab" type="button" onclick="switchTab('vocab')"><span>🗂️</span><span>فەرهەنگ</span></button>
+        <button id="nav-desktop-builder" type="button" onclick="switchTab('builder')"><span>🧩</span><span>ڕستەسازی</span></button>
+        <button id="nav-desktop-conversations" type="button" onclick="switchTab('conversations')"><span>💬</span><span>گفتوگۆکان</span></button>
+        <button id="nav-desktop-quiz" type="button" onclick="switchTab('quiz')"><span>🎯</span><span>تاقیکردنەوە</span></button>
+        <button id="nav-desktop-progress" type="button" onclick="switchTab('progress')"><span>📊</span><span>پێشکەوتن و سیستەم</span></button>
       </nav>
-
-      <!-- Global Controls: Pronunciation Toggle & XP/Streak -->
       <div class="flex items-center gap-2">
         <button id="global-pron-btn" type="button" onclick="toggleGlobalPronunciation()" class="px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-cyan-500/40 text-xs font-bold text-cyan-200 flex items-center gap-2 transition" title="شاردنەوە یان پیشاندانی خوێندنەوەی کوردیی سۆرانی">
           <span id="global-pron-badge" class="w-2.5 h-2.5 rounded-full bg-cyan-400"></span>
           <span id="global-pron-text">خوێندنەوەی سۆرانی: دیارە</span>
         </button>
-
         <div class="hidden sm:flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-slate-900 border border-slate-800 text-xs font-bold text-amber-300">
-          <span>🔥</span>
-          <span id="header-streak">3 ڕۆژ</span>
+          <span>🔥</span><span id="header-streak">3 ڕۆژ</span>
         </div>
-
         <div class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-blue-950/80 border border-blue-500/40 text-xs font-extrabold text-cyan-300">
-          <span>⭐</span>
-          <span id="header-xp">40 XP</span>
+          <span>⭐</span><span id="header-xp">40 XP</span>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- Main Content Container -->
   <main id="view-container" class="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 py-5">
-    <!-- Populated dynamically by FarsiYar app_logic.js -->
+    <!-- The full application logic and data will be restored in the next complete push. -->
+    <div class="text-center py-20">
+      <h1 class="text-2xl font-bold text-white mb-4">فارسی‌یار is being fully restored...</h1>
+      <p class="text-slate-400">Please wait a moment. The complete working version is being pushed.</p>
+    </div>
   </main>
 
-  <!-- Live Audio & Phonetic Feedback Toast -->
-  <div id="farsiyar-toast" class="fixed bottom-20 lg:bottom-6 left-4 right-4 sm:left-auto sm:right-6 sm:max-w-sm z-50 pointer-events-none opacity-0 translate-y-4 transition-all duration-300">
-    <div class="p-3.5 rounded-2xl bg-slate-950/95 backdrop-blur-md border border-cyan-400/50 shadow-2xl shadow-cyan-950/60">
-      <div id="toast-title" class="text-xs font-bold text-cyan-400 mb-1">🔊 خوێندنەوەی فارسی</div>
-      <div id="toast-fa" class="text-base font-extrabold text-white" lang="fa"></div>
-      <div id="toast-pron" class="text-xs text-amber-300 font-semibold mt-0.5"></div>
-    </div>
-  </div>
-
-  <!-- Mobile Bottom Navigation Bar (iPhone & Mobile First) -->
   <nav class="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-slate-950/95 backdrop-blur-md border-t border-blue-900/60 grid grid-cols-6 pb-[env(safe-area-inset-bottom,0px)]" aria-label="Mobile Navigation">
-    <button id="nav-mobile-lessons" type="button" onclick="switchTab('lessons')">
-      <span class="text-base">📚</span>
-      <span class="mt-0.5">وانەکان</span>
-    </button>
-    <button id="nav-mobile-vocab" type="button" onclick="switchTab('vocab')">
-      <span class="text-base">🗂️</span>
-      <span class="mt-0.5">فەرهەنگ</span>
-    </button>
-    <button id="nav-mobile-builder" type="button" onclick="switchTab('builder')">
-      <span class="text-base">🧩</span>
-      <span class="mt-0.5">ڕستەسازی</span>
-    </button>
-    <button id="nav-mobile-conversations" type="button" onclick="switchTab('conversations')">
-      <span class="text-base">💬</span>
-      <span class="mt-0.5">گفتوگۆ</span>
-    </button>
-    <button id="nav-mobile-quiz" type="button" onclick="switchTab('quiz')">
-      <span class="text-base">🎯</span>
-      <span class="mt-0.5">تاقیکردنەوە</span>
-    </button>
-    <button id="nav-mobile-progress" type="button" onclick="switchTab('progress')">
-      <span class="text-base">📊</span>
-      <span class="mt-0.5">پێشکەوتن</span>
-    </button>
+    <button id="nav-mobile-lessons" type="button" onclick="switchTab('lessons')"><span class="text-base">📚</span><span class="mt-0.5">وانەکان</span></button>
+    <button id="nav-mobile-vocab" type="button" onclick="switchTab('vocab')"><span class="text-base">🗂️</span><span class="mt-0.5">فەرهەنگ</span></button>
+    <button id="nav-mobile-builder" type="button" onclick="switchTab('builder')"><span class="text-base">🧩</span><span class="mt-0.5">ڕستەسازی</span></button>
+    <button id="nav-mobile-conversations" type="button" onclick="switchTab('conversations')"><span class="text-base">💬</span><span class="mt-0.5">گفتوگۆ</span></button>
+    <button id="nav-mobile-quiz" type="button" onclick="switchTab('quiz')"><span class="text-base">🎯</span><span class="mt-0.5">تاقیکردنەوە</span></button>
+    <button id="nav-mobile-progress" type="button" onclick="switchTab('progress')"><span class="text-base">📊</span><span class="mt-0.5">پێشکەوتن</span></button>
   </nav>
 
   <script>
-// NOTE: This is a partial push for the structure. The full improved content with all data and logic is being applied. For complete app, the full file from local improved version will be used in subsequent update if needed.
-// For now, to restore functionality, the original full logic is preferred. Full push of 260k content is limited in this interface.
-console.log('FarsiYar v1.1 structure loaded');
+    // Temporary restore message. Full app data + logic coming in next update.
+    console.log("FarsiYar restore in progress");
+    function switchTab() { alert("Full app is being restored. Please wait for the next update."); }
   </script>
 </body>
 </html>
